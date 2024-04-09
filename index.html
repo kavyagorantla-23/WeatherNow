@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherNow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Forecast</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Current Weather</h1>
+    <div id="currentWeather"></div>
+    
+    <h2>3-Day Forecast</h2>
+    <div id="forecast"></div>
+    
+    <form id="signupForm">
+        <label for="email">Sign up for weather updates:</label><br>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Sign Up</button>
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2024 WeatherNow. All rights reserved. <a href="#">Terms of Service</a></p>
+</footer>
+
+<script>
+    // Mock data for demonstration
+    const currentWeatherData = {
+        temperature: 25,
+        condition: "Sunny"
+    };
+
+    const forecastData = [
+        { day: "Monday", condition: "Sunny", temperature: 27 },
+        { day: "Tuesday", condition: "Cloudy", temperature: 22 },
+        { day: "Wednesday", condition: "Rainy", temperature: 18 }
+    ];
+
+    // Display current weather
+    const currentWeatherDiv = document.getElementById("currentWeather");
+    currentWeatherDiv.innerHTML = `<p>Temperature: ${currentWeatherData.temperature}°C</p>
+                                    <p>Condition: ${currentWeatherData.condition}</p>`;
+
+    // Display forecast
+    const forecastDiv = document.getElementById("forecast");
+    forecastData.forEach(day => {
+        forecastDiv.innerHTML += `<div>
+                                    <h3>${day.day}</h3>
+                                    <p>Temperature: ${day.temperature}°C</p>
+                                    <p>Condition: ${day.condition}</p>
+                                </div>`;
+    });
+
+    // Form submission
+    const signupForm = document.getElementById("signupForm");
+    signupForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const email = document.getElementById("email").value;
+        // Here you can add code to handle the form submission, e.g., send data to server
+        console.log("Email submitted:", email);
+        alert("Thank you for signing up!");
+        signupForm.reset();
+    });
+</script>
+
+</body>
+</html>
